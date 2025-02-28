@@ -1,0 +1,134 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family:'Times New Roman', Times, serif;
+}
+
+body{
+   background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0,0,0,0.5)), url(images/fundalgalerie.jpg);
+   height: 100vh;
+   background-size: cover;
+   background-position: center;
+}
+
+nav{
+    width: 100%;
+    overflow: auto;
+}
+
+.container{
+    overflow: auto;
+    margin: auto;
+
+}
+
+ ul{
+    float: right;
+    list-style-type: none;
+    margin-top: 45px;
+ }
+
+ ul li{
+    display: inline-block;
+ }
+
+ ul li a{
+    text-decoration: none;
+    color: white;
+    padding: 5px 20px;
+    border: 1px solid transparent;
+    transition: o.6s ease;
+ }
+
+ ul li a:hover{
+    background-color: white;
+    color: black;
+ }
+
+ .logo img{
+    float:left;
+    width: 250px;
+    height: auto;
+    margin-left: 0;
+    margin-top: 1%;
+ }
+
+ .main{
+    margin-left: 5%;
+    margin-right: 5%;
+ }
+span{
+    font-weight: bold;
+}
+
+ .gallery{
+    margin: 4px;
+    border: 1px solid transparent;
+    float: center;
+    width: 450px;
+ }
+
+ .gallery img{
+    width: 100%;
+    height: auto;
+ }
+
+ .desc{
+    padding: 15px;
+    text-align: center;
+    color: white;
+ }
+ 
+ .about{
+   text-align: left;
+   margin-left: 10%;
+   margin-right: 10%;
+ }
+
+ .about p{
+   color: white;
+   font-size: 25px;
+   margin-bottom: 20px;
+   margin-top: 20px;
+ }
+
+ hr{
+   height: 5px;
+   background-color: red;
+   color: red;
+   border-color: red;
+   box-shadow: none;
+ }
+
+ h1{
+   font-size: 80px;
+   color:#2c4125;
+   text-decoration: underline ;
+ }
+
+ h3{
+   font-size: 40px;
+   color: #EDF1D6;
+   display: inline-block;
+   text-align: center;
+ }
+
+ .regiuni{
+  width: 90%;
+ }
+
+ .reg{
+   margin-top: 50px;
+ }
+
+.imgleft{
+   width: 25%;
+   float: left;
+   margin-right: 30px;
+}
+
+.imgright{
+   width: 25%;
+   float: right;
+   margin-left: 30px;
+}

@@ -1,0 +1,106 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family:'Times New Roman', Times, serif;
+}
+
+body{
+   background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0,0,0,0.5)), url(images/peisaj.jpg);
+   height: 100vh;
+   background-size: cover;
+   background-position: center;
+}
+
+nav{
+    width: 100%;
+    overflow: auto;
+}
+
+.container{
+    overflow: auto;
+    margin: auto;
+
+}
+
+ .meniu{
+    float: right;
+    list-style-type: none;
+    margin-top: 45px;
+ }
+
+ .meniu li{
+    display: inline-block;
+ }
+
+ .meniu li a{
+    text-decoration: none;
+    color: white;
+    padding: 5px 20px;
+    border: 1px solid transparent;
+    transition: o.6s ease;
+ }
+
+ .meniu li a:hover{
+    background-color: white;
+    color: black;
+ }
+
+ .logo img{
+   float:left;
+   width: 250px;
+   height: auto;
+   margin-left: 0;
+   margin-top: 1%;
+}
+
+ .main{
+   margin-left: 5%;
+    margin-right: 5%;
+ }
+
+ .center{
+   width: 50%;
+   height: 50%;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+ }
+
+ .harta{
+   display: block;
+  margin-left: auto;
+  margin-right: auto;
+ }
+
+ .regiuni{
+   width: 100%;
+   position: absolute;
+   top: 80%;
+   left: 32%;
+   transform: translate(-50%, -50%);
+ }
+
+ .lista-regiuni{
+   float: right;
+   list-style-type: none;
+   margin-top: 45px;
+}
+
+.lista-regiuni li{
+   display: inline-block;
+}
+
+.lista-regiuni li a{
+   text-decoration: none;
+   color: #EDF1D6;
+   padding: 5px 20px;
+   border: 1px solid transparent;
+   transition: o.6s ease;
+}
+
+.lista-regiuni li a:hover{
+   background-color: #40513B;
+   color: #EDF1D6;
+}
+
