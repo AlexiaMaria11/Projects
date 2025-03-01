@@ -1,0 +1,61 @@
+import java.util.*;
+
+abstract class Autovehicul{
+    protected String numar;
+    protected double greutate;
+    public Autovehicul(String numar, double greutate){
+	this.numar=numar;
+	this.greutate=greutate;
+    }
+    abstract double calculeazaGreutateTotala();
+}
+
+class Autoturism extends Autovehiucl{
+    private double pasageri;
+    public Autoturism(String nume, double greutate, double pasageri){
+	super(nume, greutate);
+	this.pasageri=pasageri;
+    }
+    public double calculeazaGreutateTotala(){
+	return greutate + pasageri;
+    }
+    public String toString(){
+	return "Numar inmatriculare: " + numar + ", Greutate autovehicul: " + greutate + ", Greutate pasageri: " + pasageri;
+    }
+}
+
+class Camion extends Autovehicul{
+    private List<Autoturism> auto = new ArrayList<Autoturism>();
+    public Camion(String numar, double greutate){
+	super(numar, greutate);
+    }
+    public void adaugaAutoturism(Autoturism a){
+	auto.add(a);
+    }
+    public double calculeazaGreutateTotala(){
+	double s=greutate;
+	Iterator<Autoturism> it = auto.iterator();
+	while(it.hasNext()){
+	    s+=it.next().calculeazaGreuatateTotala();
+	}
+	return s;
+    }
+    public String toString(){
+	int c=0;
+	String s = "Numar inmatriculare: " + numar + ", Greutate autovehicul: " + greutate + ", (";
+	Iterator<Autoturism> it = auto.iterator();
+	while(it.hasNext()){
+	    c++;
+	    s+="Autoturism" + c + " - " + it.next();
+	    if(it.hasNext()) s+=", ";
+	}
+	s+=")";
+	return s;
+    }
+}
+
+class Transport{
+    public static void main(String args[]){
+	
+    }
+}

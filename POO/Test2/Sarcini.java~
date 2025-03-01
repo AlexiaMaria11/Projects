@@ -1,0 +1,102 @@
+import java.util.*;
+
+abstract class Task{
+    protected String nume;
+    public Task(String nume){
+	this.nume=nume;
+    }
+    abstract boolean execute(double secunde);
+}
+
+class SimpleTask extends Task{
+    private double necesar, ramas;
+    public SimpleTask(String nume, doable n){
+	super(nume);
+	necesar=n;
+	ramas=necesar;
+    }
+    public boolean execute(double secunde){
+	if(ramas>0){
+	    ramas = ramas-secunde;
+	    if(ramas>0)
+		return false;
+	    else
+		return true;
+	}
+	return true;
+    }
+    public String toString(){
+	return "Nume: " + nume + ", Timp: " + ramas;
+    }
+}
+
+class ComposedTask extends Task{
+    private List<SimpleTask> lista = new ArrayList<SimpleTask>();
+    private int c=0;
+    public ComposedTask(String nume, ArrayList a){
+	super(nume);
+	lista = a;
+    }
+    public boolean execute(double secunde){
+	Iterator<SimpleTask> it = lista.iterator();
+	while(it.hasNext()){
+	    c++;
+	}
+	Iterator<SimpleTask> it = lista.iterator();
+	while(it.hasNext()){
+	    if(it.next().execute(secunde/c))
+		return true;
+	    else
+		return false;
+	}
+    }
+    public String toString(){
+	String s="Nume: " + nume + ", Continut: (";
+	Iterator<SimpleTask> it = lista.iterator();
+	int k=0;
+	while(it.hasNext()){
+	    k++;
+	    s+="SimpleTask" + k + "-" + it.next();
+	    if(it.hasNext())s+=", ";
+	}
+	s+=")";
+	return s;
+    }
+}
+
+class Procesor{
+    private List<Task> li = new ArrayList<Task>();
+    public Procesor(ArrayList a){
+	li=a;
+    }
+    public void finishAllTasks(){
+	Iterator<Task> it = li.iterator();
+	while(it.hasNext()){
+	    Task t = it.next();
+	    while(!t.execute(5));
+	}
+    }
+    public String toString(){
+	String s="Procesor: ";
+	Iterator<Task> it = li.iteraotr();
+	while(it.hasNext()){
+	    s+="Task1: " + it.next();
+	    if(it.hasNext()) s+=", ";
+	}
+	return s;
+    }
+}
+
+class Sarcini{
+    public static void main(String args[]){
+	List<Task> lista = new ArrayList<Task>();
+	List<SimpleTask> simple = new ArrayList<SimpleTask>();
+	simple.add(new SimpleTask("S1", 5));
+	simple.add(new SimpleTask("S2", 10));
+	lista.add(new ComposedTask("Compus", simple));
+	Procesor p = new Procesor(lista);
+	System.out.println(p);
+	p.finishAllTasks();
+	System.out.println(p);
+    }
+}

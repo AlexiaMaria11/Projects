@@ -1,0 +1,85 @@
+import java.util.*;
+
+interface Statistica {
+    void calculeaza(List<String> sir);
+}
+
+class StatisticaNumarAparitii implements Statistica {
+    private List<String> cautate;
+    private String jurnal = "";
+
+    public StatisticaNumarAparitii(List<String> c) {
+        cautate = c;
+    }
+
+    public void calculeaza(List<String> siruri) {
+        for (String cuvant : cautate) {
+            int c = 0;
+            for (String sir : siruri) {
+                if (sir.equals(cuvant)) {
+                    c++;
+                }
+            }
+            jurnal += "În secvența " + siruri + " avem " + c + " apariții ale cuvântului " + cuvant + "\n";
+        }
+    }
+
+    public String toString() {
+        return jurnal;
+    }
+}
+
+class StatisticaNumeraleNonReale implements Statistica {
+    private int c = 0;
+    private String jurnal = "";
+
+    public void calculeaza(List<String> siruri) {
+        for (int i = 0; i < siruri.size(); i++) {
+	    int c=0;
+            String cuvant = siruri.get(i);
+            try {
+                Double.parseDouble(cuvant);
+            } catch (NumberFormatException e) {
+                c++;
+            }
+        }
+        jurnal += "In secventa "+ siruri + " avem " + c + " șiruri care nu sunt numere reale\n";
+    }
+
+    public String toString() {
+        return jurnal;
+    }
+}
+
+class Executor {
+    private List<Statistica> stats;
+
+    public Executor(List<Statistica> st) {
+        stats = st;
+    }
+
+    public void executa(List<String> l) {
+        for (Statistica stat : stats) {
+            stat.calculeaza(l);
+            System.out.print(stat);
+        }
+    }
+}
+
+class Stat {
+    public static void main(String args[]) {
+        List<String> cauta = Arrays.asList("mere", "pere", "banane");
+        Statistica s1 = new StatisticaNumarAparitii(cauta);
+        Statistica s2 = new StatisticaNumeraleNonReale();
+        List<Statistica> st = Arrays.asList(s1, s2);
+        Executor e = new Executor(st);
+
+        List<String> e1 = Arrays.asList("Ana", "are", "mere");
+        List<String> e2 = Arrays.asList("Maria", "are", "pere");
+	System.out.println("Prima secventa");
+        e.executa(e1);
+	System.out.println("A doua secventa");
+        e.executa(e2);
+    }
+}
+

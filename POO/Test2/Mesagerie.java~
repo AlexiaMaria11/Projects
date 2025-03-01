@@ -1,0 +1,87 @@
+import java.util.*;
+
+abstract class Destinatar{
+    protected String nume;
+    public Destinatar(String n){
+	nume=n;
+    }
+    abstract void receptioneaza(Utilizator u, String s);
+    public boolean equals(Destinatar d){
+	if(d==null) return false;
+	if(d instanceof Destinatar)
+	    return this.equals(nume);
+	return false;
+    }
+}
+
+class Utilizator extends Destinatar{
+    private String jurnal="";
+    public Utilizator(String nume){
+	super(nume);
+    }
+    public void trimite(Destinatar d, String mesaj){
+	jurnal+="Trimis catre " + d.nume + " mesajul: " + mesaj + "\n";
+	d.receptioneaza(this, mesaj);
+    }
+    public void receptioneaza(Utilizator u, String s){
+	jurnal+="Primit de la " + u.nume + " mesajul: " + mesaj + "\n";
+    }
+    public String toString(){
+	return nume + ":\n" + jurnal;
+    }
+}
+
+class DestinatarDuplicat extends Exception{
+    public DestinatarDuplicat(String mes){
+	super(mes);
+    }
+}
+
+class Grup extends Destinatar{
+    private List<Destinatar> destinatari = new ArrayList<Destinatar>();
+    public Grup(String nume){
+	super(nume);
+    }
+    public void inscrie(Destinatar d) throws DestinatarDuplicat{
+	for(Destinatar i:destinatari){
+	    if(i.equlas(d))
+		throw new DestinatarDuplicat("Destinatar duplicat");
+	}
+	destinatari.add(d);
+    }
+    public void receptioneaza(Utilizator u, String s){
+	for(Destinatar i:destinatari){
+	    if(!i.equals(u)){
+		i.receptioneaza(u, s);
+	    }
+	}
+    }
+}
+
+class Mesagerie{
+    public static void main(String args[]){
+	Destinatar d1,d2,d3, g;
+	d1 = new Utilizator("Dan");
+	d2 = new Utilizator("Marius");
+	d3 = new Utilizator("Alex");
+	g = new Grup("Carnivorii");
+	g.inscrie(d1);
+	g.inscire(d2);
+	g.inscrie(d3);
+	try{
+	    g.inscrie(d3);
+	}catch(DestinatarDuplicat e){
+	    System.out.println(e.getMessage);
+	}
+	try{
+	    g.inscrie(d3);
+	}catch(DestinatarDuplicat e){
+	    System.out.println(e.getMessage);
+	}
+	d3.trimite(g, "Am deschis magazinul");
+	d2.trimite(g, "Vin acuma");
+	System.out.println(d1);
+	System.out.println(d2);
+	System.out.println(d3);
+    }
+}

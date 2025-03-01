@@ -1,0 +1,101 @@
+import java.util.*;
+
+abstract class Utilizator{
+    protected String nume;
+    public Utilizator(String nume){
+	this.nume=nume;
+    }
+    abstract double calculeazaVenit(int minute);
+}
+
+class Subscriber extends Utilizator{
+    private int nivel;
+    public Subscriber(String nume, int nivel){
+	super(nume);
+	this.nivel=nivel;
+    }
+    public double calculeazaVenit(int minute){
+	return 1.5 * (double)nivel;
+    }
+    public String toString(){
+	return nume + " - subscriber - " + nivel + "; ";
+    }
+}
+
+class Creator extends Utilizitor{
+    private List<Subscriber> subs = new ArrayList<Subscriber>();
+    public Creator(String nume){
+	super(nume);
+    }
+    public void adaugaSubscriber(Subscriber s){
+	subs.add(s);
+    }
+    public double calculeazaVenit(int minute){
+	Iterator<Subscriber> it = subs.iterator();
+	double d=0.0;
+	while(it.hasNext()){
+	    d+=it.next().calculeazaVenit(minute);
+	}
+	return d;
+    }
+    public String toString(){
+	return nume + " - creator - subscriberi: " + subs;
+    }
+}
+
+class Platforma{
+    private Utilizator[] u = new Utilizator[1000];
+    private int nr_utilizatori=0;
+    public boolean adaugaUtilizator(Utilizator ut){
+	if(nr_Utilizatori<1000){
+	    u[nr_utilizator] = ut;
+	    nr_utilizatori++;
+	    return true;
+	}
+	else
+	    return false;
+    }
+    public Utilizator determinaVIP(int minute){
+	double maxim = 0;
+	Utilizator um;
+	if(nr_utilizatori)
+	    return null;
+	for(int i=0; i<nr_utilizatori; i++){
+	    if(u[i].calculeazaVenit(minute)>maxim){
+		maxim = u[i].calculeazaVenit(minute);
+		um=u[i];
+	    }
+	}
+	return um;
+    }
+    public String toString(){
+	String s="";
+	for(int i=0; i<nr_utilizatori; i++)
+	    s+=u[i];
+	return s;
+    }
+}
+
+class Twitch{
+    public static void main(String args[]){
+	Platforma p = new Platforma();
+	Utilizator u1 = new Subscriber("Angela", 2);
+	Utilizator u2 = new Subscriber("Mihai", 1);
+	Utilizator u3 = new Subscriber("Ana", 4);
+	Utilizator u4 = new Subscriber("Ion", 3);
+	Utilizator u5 = new Subscriber("Maria", 2);
+	Utilizator u6 = new Subscriber("Bogdan", 1);
+	Utilizator u7 = new Creator("Ioana");
+	u7.adaugaSubscriber(u1);
+	u7.adaugaSubscriber(u2);
+	Utilizator u8 = new Creator("Andrei");
+	u8.adaugaSubscriber(u3);
+	u8.adaugaSubscriber(u4);
+	u8.adaugaSubscriber(u5);
+	p.adaugaUtilizator(u7);
+	p.adaugaUtilizator(u8);
+	p.adaugaUtilizator(u6);
+	System.out.println(p);
+	System.out.println("Utilizatorul VIP: " + p.determinaVIP(30));
+    }
+}

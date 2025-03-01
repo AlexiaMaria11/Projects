@@ -1,0 +1,37 @@
+import java.util.*;
+
+class WQIE extends RunTimeException{
+    public WQIE(){
+	super("WrongQualityIndicatorException");
+    }
+}
+
+interface Test{
+    int getNumarTeste();
+}
+
+abstract class TestSimplu implements Test{
+    protected String nume;
+    protected int indicator;
+    public TestSimplu(String nume, int indicator) throws WQIE{
+	this.nume=nume;
+	if(indicator<1 || indicator>10)
+	    throw new WQIE();
+	this.indicator = indicator;
+    }
+    public int getNumarTeste(){
+	return 1;
+    }
+}
+
+class IntegrationTest extends TestSimplu{
+    public IntegrationTest(String nume, int indicator) throws WQIE{
+	super(nume, indicator);
+    }
+}
+
+class Teste{
+    public static void main(String args[]){
+	
+    }
+}

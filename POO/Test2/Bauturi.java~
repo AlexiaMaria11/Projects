@@ -1,0 +1,21 @@
+abstract class Whiskey{
+    protected String nume;
+    protected double alcool;
+    public Whiskey(String nume, double alcool){
+	this.nume=nume;
+	this.alcool=alcool;
+    }
+    public double getNrCalorii(double ml);
+    public double getConcentratieAlcoole(int alc);
+    public String toString();
+}
+
+class ClassicWhiskey extends Whiskey{
+    
+}
+
+class Bauturi{
+    public static void main(String args[]){
+	
+    }
+}
